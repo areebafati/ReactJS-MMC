@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-hook-form": "^7.65.0",
+    "yup": "^1.7.1"
+  }
+}
