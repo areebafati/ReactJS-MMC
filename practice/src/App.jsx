@@ -9,10 +9,12 @@ import Inputfield from './components/elements/Inputfield'
 import { useForm, } from "react-hook-form";
 import { userSchema } from './schemas/validation'
 import { yupResolver } from "@hookform/resolvers/yup";
+import CheckboxLabels from './components/elements/Checkbox'
+import RowRadioButtonsGroup from './components/elements/Gender'
 
 
 function App() {
-  const { control, handleSubmit, formState: { errors }, } = useForm({
+  const { control, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(userSchema),
 
 
@@ -21,7 +23,7 @@ function App() {
 
 
 
-  const onSubmit = (data) => {
+  const Submit = (data) => {
     console.log("Form data:", data);
   };
 
@@ -31,7 +33,7 @@ function App() {
   return (
     <>
       <h1>FORM !</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(Submit)}>
         <Grid container spacing={1}>
 
           <Grid size={4}>
@@ -56,12 +58,25 @@ function App() {
           </Grid>
 
           <Grid size={4}>
-            <FileUpload   name="upload" control={control}error={errors.upload} />
+            <FileUpload   name="upload" control={control} error={errors.upload} />
           </Grid>
 
-          <Grid size={12}>
+        
+
+           <Grid size={12}>
+            <RowRadioButtonsGroup name="gender" control={control} error={errors.gender}  />
+          </Grid>
+
+           <Grid size={12}>
+            <CheckboxLabels
+            //  name="terms" control={control} error={errors.terms} 
+             />
+          </Grid>
+
+           <Grid size={12}>
             <CustomButton   />
           </Grid>
+
 
 
 
