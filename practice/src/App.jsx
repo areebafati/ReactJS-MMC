@@ -6,15 +6,17 @@ import Textarea from './components/elements/Textarea'
 import CustomButton from './components/elements/Button'
 import Grid from '@mui/material/Grid';
 import Inputfield from './components/elements/Inputfield'
-import { useForm, Controller } from "react-hook-form";
+import { useForm, } from "react-hook-form";
+import { userSchema } from './schemas/validation'
+import { yupResolver } from "@hookform/resolvers/yup";
+
 
 function App() {
-  const { control, handleSubmit, } = useForm({
-    // defaultValues: {
-    //   fullName: "",
-    //   firstName: "",
-    //   age: "",
-    // },
+  const { control, handleSubmit, formState: { errors }, } = useForm({
+    resolver: yupResolver(userSchema),
+
+
+
   });
 
 
@@ -26,48 +28,49 @@ function App() {
 
 
 
-return (
-  <>
-    <h1>FORM !</h1>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Grid container spacing={1}>
+  return (
+    <>
+      <h1>FORM !</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container spacing={1}>
 
-        <Grid size={4}>
-          <Inputfield name="firstName" placeholder="your first name " control={control} label="First Name" rules={{ required: true }} />
+          <Grid size={4}>
+            <Inputfield name="firstname" placeholder="your first name " control={control} label="First Name"  error={errors.firstname} />
+          </Grid>
+
+
+          <Grid size={4}>
+
+            <Inputfield name="lastname" placeholder="your last name " control={control} label="Last Name"error={errors.lastname} />
+
+          </Grid>
+
+
+          <Grid size={4}>
+            <Inputfield name="age" placeholder="your Age " control={control} label="Age"error={errors.age} />
+
+          </Grid>
+
+          <Grid size={8}>
+            < CountrySelect  name ="country" control={control} error={errors.country} />
+          </Grid>
+
+          <Grid size={4}>
+            <FileUpload   name="upload" control={control}error={errors.upload} />
+          </Grid>
+
+          <Grid size={12}>
+            <CustomButton   />
+          </Grid>
+
+
+
+
 
         </Grid>
 
 
-        <Grid size={4}>
-         
-        
-          <Inputfield name="Last Name" placeholder="your last name " control={control} label="Last Name"  rules={{
-                required: true,
-                minLength: { value: 3, message: "Must be at least 3 characters" },
-              }} />
-
-        </Grid>
-
-
-        <Grid size={4}>
-           <Inputfield name="Age" placeholder="your Age " control={control} label="Age" rules={{
-                required: true,
-                min: { value: 18, message: "Must be at least 18" },
-              }} />
-
-        
-        </Grid>
-
-        <Grid size={12}>
-          <CustomButton />
-        </Grid>
-
-
-
-      </Grid>
-
-
-    </form>
+      </form>
 
 
 
@@ -77,8 +80,8 @@ return (
 
 
 
-  </>
-);
+    </>
+  );
 }
 
 
