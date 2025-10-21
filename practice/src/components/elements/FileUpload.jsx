@@ -20,7 +20,7 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-export default function FileUpload({ name,control }) {
+export default function FileUpload({ name, control, error }) {
   const [selectedImage, setSelectedImage] = React.useState(null);
   const [previewUrl, setPreviewUrl] = React.useState(null);
 
@@ -34,15 +34,18 @@ export default function FileUpload({ name,control }) {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" mt={2}>
+       {error && <Typography color="error">{error.message}</Typography>}
       <Controller
         name="upload"
         control={control}
         render={({ field }) => (
           <>
             <Button
+
               {...field}
               component="label"
               variant="contained"
+
               startIcon={<CloudUploadIcon />}
             >
               Upload your file
@@ -51,7 +54,10 @@ export default function FileUpload({ name,control }) {
                 accept="image/*"
                 onChange={(e) => {
                   handleFileChange(e);
+
+
                   field.onChange(e.target.files[0]); // connect with react-hook-form
+
                 }}
               />
             </Button>
@@ -60,6 +66,7 @@ export default function FileUpload({ name,control }) {
             {previewUrl && (
               <Box mt={2} textAlign="center">
                 <Avatar
+
                   src={previewUrl}
                   alt="Preview"
                   variant="rounded"
@@ -67,7 +74,12 @@ export default function FileUpload({ name,control }) {
                 />
                 <Typography variant="body2" sx={{ mt: 1 }}>
                   {selectedImage.name}
+                  <br />
+
+                
                 </Typography>
+                
+              
               </Box>
             )}
           </>

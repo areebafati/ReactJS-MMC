@@ -1,16 +1,15 @@
 import Box from '@mui/material/Box';
 
 import TextField from '@mui/material/TextField';
-import { Controller, useController } from 'react-hook-form';
+import { Controller} from 'react-hook-form';
 
 
 
 
-export default function Inputfield({ label, defaultValue, name, control , }) {
+export default function Inputfield({ label, defaultValue, name, control , error  }) {
    
     return (
         <Box
-            component="form"
             sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
             autoComplete="off"
         >
@@ -18,7 +17,7 @@ export default function Inputfield({ label, defaultValue, name, control , }) {
                  <Controller
                     name={name} //should be unique
                     control={control}
-                    // rules={{ required: "name is required" }}
+            
                     
                     render={({ field }) => ( 
                         
@@ -26,10 +25,9 @@ export default function Inputfield({ label, defaultValue, name, control , }) {
                     {...field}
                     label={label}
                     placeholder={defaultValue}
-                    // control={control}
                     fullWidth
-                    // error={!!fieldState.error}
-                    // helperText={fieldState.error?.message}
+                    error={!!error}
+                    helperText={error ? error.message : ""}
 
 
 

@@ -4,16 +4,17 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { Controller } from 'react-hook-form';
 
-export default function CountrySelect({ name, control }) {
+export default function CountrySelect({ name, control, error }) {
   return (
     <Controller
       name={name}
       control={control}
-      
+
       render={({ field }) => (
         <Autocomplete
           // Spread field but override value/onChange correctly
           {...field}
+
           value={field.value ?? null} // always defined, fixes uncontrolled warning
           onChange={(_, data) => field.onChange(data)}
           options={countries}
@@ -25,6 +26,7 @@ export default function CountrySelect({ name, control }) {
             const { key, ...optionProps } = props;
             return (
               <Box
+
                 component="li"
                 sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
                 key={option.code} // pass key separately
@@ -38,16 +40,20 @@ export default function CountrySelect({ name, control }) {
                   alt=""
                 />
                 {option.label} ({option.code}) +{option.phone}
+
               </Box>
             );
           }}
           renderInput={(params) => (
             <TextField
+              error={!!error}
+              helperText={error ? error.message : ""}
               {...params}
               label="Choose a country"
               inputProps={{
                 ...params.inputProps,
                 autoComplete: 'new-password', // disable browser autofill
+
               }}
             />
           )}
