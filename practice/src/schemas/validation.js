@@ -1,11 +1,7 @@
-import {object, string , number , mixed, boolean} from 'yup';
+import {object, string , number , mixed, array} from 'yup';
+
 
 // const SUPPORTED_FORMATS = ['image/jpeg', 'image/png', 'image/gif'];
-
-
-
-
-
 
 
 export const userSchema = object({
@@ -15,8 +11,8 @@ export const userSchema = object({
     country: mixed().required("Country is required"),
     upload: mixed().required('A file is required'),
     gender: string().required('Please select your gender.'),
-    // check: boolean(). oneOf([true]) .required("you must accept the terms and conditions"),
-    
+    movies:array().max(5,"Please select max 5 movies").required("Please select movies")
+   
 
 
 

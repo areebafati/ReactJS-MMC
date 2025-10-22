@@ -17,10 +17,11 @@ export default function RowRadioButtonsGroup({ name, control, error }) {
           <FormLabel id={`${name}-label`}>Gender</FormLabel>
           <RadioGroup
             {...field}
+            value={field.value || ''}
             row
             aria-labelledby={`${name}-label`}
-            name={name}
-            control={control}
+            // name={name}
+            // control={control}
           >
             <FormControlLabel value="female" control={<Radio />} label="Female" />
             <FormControlLabel value="male" control={<Radio />} label="Male" />
