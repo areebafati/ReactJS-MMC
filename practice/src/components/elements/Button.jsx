@@ -1,13 +1,14 @@
-import React from 'react'
+
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 
-function CustomButton() {
+function CustomButton({name='Submit', type='submit', onClick}) {
+  
   return (
     <>
-         <Button  variant="contained" type='submit' >SUBMIT</Button>
-     
-   
-</>
+      <Button color={type === 'button' ? 'secondary' : 'primary'} variant="outlined" type={type}  onClick={onClick}>{name}</Button>
+
+    </>
   )
 }
 

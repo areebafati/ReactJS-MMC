@@ -13,12 +13,13 @@ export default function Inputfield({ defaultValue, label, name, control, error }
                 <Controller
                     name={name} //should be unique
                     control={control}
-
+                   
 
                     render={({ field }) => (
 
                         <TextField
                             {...field}
+                             value={field.value || ''}
                             label={label}
                             placeholder={defaultValue}
                             fullWidth
@@ -31,9 +32,7 @@ export default function Inputfield({ defaultValue, label, name, control, error }
                     )
                     }
 
-
                 />
-
             </div>
 
         </Box>

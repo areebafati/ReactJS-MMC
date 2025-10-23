@@ -1,4 +1,4 @@
-import {object, string , number , mixed, array} from 'yup';
+import { object, string, number, mixed, array } from 'yup';
 
 
 // const SUPPORTED_FORMATS = ['image/jpeg', 'image/png', 'image/gif'];
@@ -12,7 +12,35 @@ export const userSchema = object({
     upload: mixed().required('A file is required'),
     gender: string().required('Please select your gender.'),
     movies:array().max(5,"Please select max 5 movies").required("Please select movies")
-   
+})
+// import { object, string, array } from "yup";
+
+// export const userSchema = object({
+//   students: array()
+//     .of(
+//       object({
+//         studentname: string()
+//           .required("Student name is required")
+//           .min(3, "Name must be at least 3 characters"),
+
+//         fathername: string()
+//           .required("Father name is required")
+//           .min(3, "Name must be at least 3 characters"),
+
+//         password: string()
+//           .min(8, "Password must be at least 8 characters long")
+//           .max(250, "Password cannot exceed 250 characters")
+//           .matches(/[0-9]/, "Password must contain at least one number")
+//           .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+//           .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+//           .matches(/[!@#$%^&*]/, "Password must contain at least one symbol (!@#$%^&*)")
+//           .required("Password is required"),
+
+//         currency: string().required("Currency is required"),
+//       })
+//     )
+//     .min(1, "At least one student is required"),
+// });
 
 
 
@@ -22,32 +50,8 @@ export const userSchema = object({
 
 
 
-    // .test(
-    //         'fileSize',
-    //         'File size must be less than 4MB',
-    //         (value) => {
-    //             // Check if a file is present and its size
-    //             return value && value.size <= 4000000; // 2MB in bytes
-    //         }
-    //     )
-        // .test(
-        //     'fileFormat',
-        //     'Only JPG and PNG files are allowed',
-        //     (value) => {
-        //         console.log(value, "format")
-        //         // Check if a file is present and its type
-        //         return value && SUPPORTED_FORMATS.includes(value.type);
-        //     }
-        // )
 
 
-//           .test("fileSize", "File size must be less than 4MB", (value) => {
-//     if (!value) return false; // ❗ must return false if empty
-//     return value.size <= 4_000_000; // 4MB
-//   })
-//   .test("fileFormat", "Only JPG, PNG, and GIF files are allowed", (value) => {
-//     if (!value) return false; // ❗ must check existence
-//     return SUPPORTED_FORMATS.includes(value.type);
-//      }),
-});
-       
+    
+
+

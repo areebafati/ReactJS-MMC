@@ -17,6 +17,7 @@ export default function Movies({ name, control, error }) {
           {...field}
           value={field.value || []}
           onChange={(_, data) => {
+        
           field.onChange(data);
           }}
           multiple
